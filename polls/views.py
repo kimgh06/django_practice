@@ -1,8 +1,24 @@
 from django.shortcuts import render
-
-# Create your views here.
 from django.http import HttpResponse
+import mysql.connector as mysql
+import json
 
+db = mysql.connect(
+    host="127.0.0.1",
+    user="root",
+    passwd='1234',
+    database="django_p"
+)
+
+def selectAll():
+    cur = db.cursor()
+    query = '''select * from asdf1'''
+    cur.execute(query)
+    result = cur.fetchall()
+    print(result)
+
+    return json.dumps(result)
 
 def index(request):
-    return HttpResponse("Hello, world. You're at the polls index.")
+    result= selectAll()
+    return HttpResponse(result)
