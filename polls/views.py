@@ -15,9 +15,9 @@ def selectAll():
     query = '''select * from asdf1'''
     cur.execute(query)
     result = cur.fetchall()
-    print(result)
+    print(dict(result))
 
-    return json.dumps(result)
+    return json.dumps(dict(result))
 
 def index(request):
     result= selectAll()
